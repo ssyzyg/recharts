@@ -117,5 +117,7 @@ ePlot = function(series, ext = NULL, size = NULL,
       instance
     }
   )
+  # add theme dependencies
+	chart = addThemeDependencies(chart)
   chart
 }
