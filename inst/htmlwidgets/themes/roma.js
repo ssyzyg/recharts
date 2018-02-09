@@ -514,6 +514,6 @@
             }
         }
     };
-    #upated var theme, it's actually 'walden' theme
+    //upated var theme, it's actually 'walden' theme
     echarts.registerTheme('roma', theme);
 }));
