@@ -69,9 +69,14 @@ eSankey = function(dat,  candleColor, size = NULL,
   dat$source = as.character(dat$source)
   dat$target = as.character(dat$target)
   dat$value = as.numeric(dat$value)
-  nodes = unique(c(dat$source,dat$target))
-  nodes = as.data.frame(nodes)
-  colnames(nodes) = "name"
+  #nodes = unique(c(dat$source,dat$target))
+  #nodes = as.data.frame(nodes)
+  #colnames(nodes) = "name"
+  #added by Yaha , to replace previous two lines, to show sum value of each block on chart
+  nodes <- sqldf::sqldf("select source name,sum(value) value from dat2 group by source  
+                         union 
+                         select target name ,sum(value) value from dat2 group by target ")
+  colnames(nodes) = c("name","value")
   links = dat
   nodes = jsonlite::toJSON(nodes)
   links = jsonlite::toJSON(links)
